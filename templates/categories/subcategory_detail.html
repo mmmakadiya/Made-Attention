@@ -1,0 +1,288 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ category.name }} - Meditation Techniques{% endblock %}
+
+{% block content %}
+<div class="container">
+    <nav aria-label="breadcrumb" class="mt-3">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{% url 'meditation:categories' %}">Meditation Categories</a></li>
+            <li class="breadcrumb-item active" aria-current="page">{{ category.name }}</li>
+        </ol>
+    </nav>
+    
+    <div class="row mt-3">
+        <div class="col-12">
+            <h1>{{ category.name }}</h1>
+            <p class="lead">{{ category.description }}</p>
+        </div>
+    </div>
+    
+    <div class="row mt-4">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <h2 class="h4 mb-0">Meditation Techniques</h2>
+                </div>
+                <div class="card-body">
+                    {% if category.id == 1 %}
+                    <!-- Breathing-Based Meditation Techniques -->
+                    <div class="list-group">
+                        <a href="{% url 'meditation:technique_detail' 1 1 %}" class="list-group-item list-group-item-action">1. Vipassana (Insight Meditation)</a>
+                        <a href="{% url 'meditation:technique_detail' 1 2 %}" class="list-group-item list-group-item-action">2. Anapanasati (Mindful Breathing)</a>
+                        <a href="{% url 'meditation:technique_detail' 1 3 %}" class="list-group-item list-group-item-action">3. Nadi Shodhana (Alternate Nostril Breathing)</a>
+                        <a href="{% url 'meditation:technique_detail' 1 4 %}" class="list-group-item list-group-item-action">4. Bhastrika (Bellows Breath)</a>
+                        <a href="{% url 'meditation:technique_detail' 1 5 %}" class="list-group-item list-group-item-action">5. Kapalabhati (Cleansing Breath)</a>
+                        <a href="{% url 'meditation:technique_detail' 1 6 %}" class="list-group-item list-group-item-action">6. Ujjayi (Victorious Breath)</a>
+                        <a href="{% url 'meditation:technique_detail' 1 7 %}" class="list-group-item list-group-item-action">7. Soham Meditation</a>
+                        <a href="{% url 'meditation:technique_detail' 1 8 %}" class="list-group-item list-group-item-action">8. Wim Hof Breathing</a>
+                        <a href="{% url 'meditation:technique_detail' 1 9 %}" class="list-group-item list-group-item-action">9. Surya Bhedana (Right Nostril Breathing)</a>
+                        <a href="{% url 'meditation:technique_detail' 1 10 %}" class="list-group-item list-group-item-action">10. Chandra Bhedana (Left Nostril Breathing)</a>
+                        <a href="{% url 'meditation:technique_detail' 1 11 %}" class="list-group-item list-group-item-action">11. Bhramari Pranayama (Humming Bee Breath)</a>
+                    </div>
+                    
+                    {% elif category.id == 2 %}
+                    <!-- Dynamic & Active Meditation Techniques -->
+                    <div class="list-group">
+                        <a href="{% url 'meditation:technique_detail' 2 1 %}" class="list-group-item list-group-item-action">1. Osho Dynamic Meditation</a>
+                        <a href="{% url 'meditation:technique_detail' 2 2 %}" class="list-group-item list-group-item-action">2. Osho Kundalini Meditation</a>
+                        <a href="{% url 'meditation:technique_detail' 2 3 %}" class="list-group-item list-group-item-action">3. Osho Mandala Meditation</a>
+                        <a href="{% url 'meditation:technique_detail' 2 4 %}" class="list-group-item list-group-item-action">4. Osho Nataraj Meditation</a>
+                        <a href="{% url 'meditation:technique_detail' 2 5 %}" class="list-group-item list-group-item-action">5. Gibberish Meditation</a>
+                        <a href="{% url 'meditation:technique_detail' 2 6 %}" class="list-group-item list-group-item-action">6. Whirling Meditation (Sufi Spinning)</a>
+                        <a href="{% url 'meditation:technique_detail' 2 7 %}" class="list-group-item list-group-item-action">7. Dance Meditation</a>
+                        <a href="{% url 'meditation:technique_detail' 2 8 %}" class="list-group-item list-group-item-action">8. Breath of Fire Meditation</a>
+                        <a href="{% url 'meditation:technique_detail' 2 9 %}" class="list-group-item list-group-item-action">9. Shaking Meditation</a>
+                        <a href="{% url 'meditation:technique_detail' 2 10 %}" class="list-group-item list-group-item-action">10. Laughing Meditation</a>
+                    </div>
+                    
+                    {% elif category.id == 3 %}
+                    <!-- Silent & Stillness Meditation Techniques -->
+                    <div class="list-group">
+                        <a href="{% url 'meditation:technique_detail' 3 1 %}" class="list-group-item list-group-item-action">1. Nishkriya Dhyana (Inactive Meditation)</a>
+                        <a href="{% url 'meditation:technique_detail' 3 2 %}" class="list-group-item list-group-item-action">2. Zazen (Zen Silent Sitting)</a>
+                        <a href="{% url 'meditation:technique_detail' 3 3 %}" class="list-group-item list-group-item-action">3. Shoonya Meditation</a>
+                        <a href="{% url 'meditation:technique_detail' 3 4 %}" class="list-group-item list-group-item-action">4. Tranquil Awareness</a>
+                        <a href="{% url 'meditation:technique_detail' 3 5 %}" class="list-group-item list-group-item-action">5. Shant Pratiksha (Silent Waiting)</a>
+                        <a href="{% url 'meditation:technique_detail' 3 6 %}" class="list-group-item list-group-item-action">6. Waiting Meditation</a>
+                        <a href="{% url 'meditation:technique_detail' 3 7 %}" class="list-group-item list-group-item-action">7. Maun Sadhana (Silence Practice)</a>
+                        <a href="{% url 'meditation:technique_detail' 3 8 %}" class="list-group-item list-group-item-action">8. Sitting in Emptiness</a>
+                        <a href="{% url 'meditation:technique_detail' 3 9 %}" class="list-group-item list-group-item-action">9. Just Being Meditation</a>
+                    </div>
+                    
+                    {% elif category.id == 4 %}
+                    <!-- Sound & Chanting-Based Meditation Techniques -->
+                    <div class="list-group">
+                        <a href="{% url 'meditation:technique_detail' 4 1 %}" class="list-group-item list-group-item-action">1. Nada Yoga (Inner Sound Meditation)</a>
+                        <a href="{% url 'meditation:technique_detail' 4 2 %}" class="list-group-item list-group-item-action">2. Mantra Meditation (Om, So Hum, etc.)</a>
+                        <a href="{% url 'meditation:technique_detail' 4 3 %}" class="list-group-item list-group-item-action">3. AUM Meditation</a>
+                        <a href="{% url 'meditation:technique_detail' 4 4 %}" class="list-group-item list-group-item-action">4. Bija Mantra Chanting</a>
+                        <a href="{% url 'meditation:technique_detail' 4 5 %}" class="list-group-item list-group-item-action">5. Kirtan Meditation</a>
+                        <a href="{% url 'meditation:technique_detail' 4 6 %}" class="list-group-item list-group-item-action">6. Gregorian Chanting</a>
+                        <a href="{% url 'meditation:technique_detail' 4 7 %}" class="list-group-item list-group-item-action">7. Vedic Chanting</a>
+                        <a href="{% url 'meditation:technique_detail' 4 8 %}" class="list-group-item list-group-item-action">8. Tibetan Singing Bowl Meditation</a>
+                        <a href="{% url 'meditation:technique_detail' 4 9 %}" class="list-group-item list-group-item-action">9. Shabad Meditation (Sikh Sound Meditation)</a>
+                        <a href="{% url 'meditation:technique_detail' 4 10 %}" class="list-group-item list-group-item-action">10. Gayatri Mantra Meditation</a>
+                    </div>
+                    
+                    {% elif category.id == 5 %}
+                    <!-- Chakra & Energy-Based Meditation Techniques -->
+                    <div class="list-group">
+                        <a href="{% url 'meditation:technique_detail' 5 1 %}" class="list-group-item list-group-item-action">1. Kundalini Awakening Meditation</a>
+                        <a href="{% url 'meditation:technique_detail' 5 2 %}" class="list-group-item list-group-item-action">2. Chakra Healing Meditation</a>
+                        <a href="{% url 'meditation:technique_detail' 5 3 %}" class="list-group-item list-group-item-action">3. Third Eye Meditation (Ajna Chakra Focus)</a>
+                        <a href="{% url 'meditation:technique_detail' 5 4 %}" class="list-group-item list-group-item-action">4. Root Chakra Grounding</a>
+                        <a href="{% url 'meditation:technique_detail' 5 5 %}" class="list-group-item list-group-item-action">5. Heart Chakra Expansion</a>
+                        <a href="{% url 'meditation:technique_detail' 5 6 %}" class="list-group-item list-group-item-action">6. Solar Plexus Activation</a>
+                        <a href="{% url 'meditation:technique_detail' 5 7 %}" class="list-group-item list-group-item-action">7. Crown Chakra Connection</a>
+                        <a href="{% url 'meditation:technique_detail' 5 8 %}" class="list-group-item list-group-item-action">8. Seven Chakra Balancing</a>
+                        <a href="{% url 'meditation:technique_detail' 5 9 %}" class="list-group-item list-group-item-action">9. Reiki Healing Meditation</a>
+                        <a href="{% url 'meditation:technique_detail' 5 10 %}" class="list-group-item list-group-item-action">10. Tummo Meditation (Inner Fire)</a>
+                    </div>
+                    
+                    {% elif category.id == 6 %}
+                    <!-- Trataka & Visualization Techniques -->
+                    <div class="list-group">
+                        <a href="{% url 'meditation:technique_detail' 6 1 %}" class="list-group-item list-group-item-action">1. Trataka (Candle Gazing)</a>
+                        <a href="{% url 'meditation:technique_detail' 6 2 %}" class="list-group-item list-group-item-action">2. Sun Gazing Meditation</a>
+                        <a href="{% url 'meditation:technique_detail' 6 3 %}" class="list-group-item list-group-item-action">3. Inner Light Meditation</a>
+                        <a href="{% url 'meditation:technique_detail' 6 4 %}" class="list-group-item list-group-item-action">4. Guided Visualization</a>
+                        <a href="{% url 'meditation:technique_detail' 6 5 %}" class="list-group-item list-group-item-action">5. Past Life Regression</a>
+                        <a href="{% url 'meditation:technique_detail' 6 6 %}" class="list-group-item list-group-item-action">6. Future Life Progression</a>
+                        <a href="{% url 'meditation:technique_detail' 6 7 %}" class="list-group-item list-group-item-action">7. Color Visualization</a>
+                        <a href="{% url 'meditation:technique_detail' 6 8 %}" class="list-group-item list-group-item-action">8. Astral Projection Meditation</a>
+                        <a href="{% url 'meditation:technique_detail' 6 9 %}" class="list-group-item list-group-item-action">9. Symbol Meditation</a>
+                        <a href="{% url 'meditation:technique_detail' 6 10 %}" class="list-group-item list-group-item-action">10. Mirror Gazing Meditation</a>
+                    </div>
+                    
+                    {% elif category.id == 7 %}
+                    <!-- Body Movement & Yogic Meditation Techniques -->
+                    <div class="list-group">
+                        <a href="{% url 'meditation:technique_detail' 7 1 %}" class="list-group-item list-group-item-action">1. Tai Chi Meditation</a>
+                        <a href="{% url 'meditation:technique_detail' 7 2 %}" class="list-group-item list-group-item-action">2. Qi Gong Meditation</a>
+                        <a href="{% url 'meditation:technique_detail' 7 3 %}" class="list-group-item list-group-item-action">3. Walking Meditation</a>
+                        <a href="{% url 'meditation:technique_detail' 7 4 %}" class="list-group-item list-group-item-action">4. Shaking Meditation</a>
+                        <a href="{% url 'meditation:technique_detail' 7 5 %}" class="list-group-item list-group-item-action">5. Dervish Whirling</a>
+                        <a href="{% url 'meditation:technique_detail' 7 6 %}" class="list-group-item list-group-item-action">6. Yogic Kriya Meditation</a>
+                        <a href="{% url 'meditation:technique_detail' 7 7 %}" class="list-group-item list-group-item-action">7. Stretch & Meditate</a>
+                        <a href="{% url 'meditation:technique_detail' 7 8 %}" class="list-group-item list-group-item-action">8. Standing Still Meditation</a>
+                        <a href="{% url 'meditation:technique_detail' 7 9 %}" class="list-group-item list-group-item-action">9. Yoga Nidra Flow</a>
+                    </div>
+                    
+                    {% elif category.id == 8 %}
+                    <!-- Tantra & Sensory Awareness Meditation Techniques -->
+                    <div class="list-group">
+                        <a href="{% url 'meditation:technique_detail' 8 1 %}" class="list-group-item list-group-item-action">1. Body Scanning Meditation</a>
+                        <a href="{% url 'meditation:technique_detail' 8 2 %}" class="list-group-item list-group-item-action">2. Sensory Awareness Meditation</a>
+                        <a href="{% url 'meditation:technique_detail' 8 3 %}" class="list-group-item list-group-item-action">3. Tantric Breath Meditation</a>
+                        <a href="{% url 'meditation:technique_detail' 8 4 %}" class="list-group-item list-group-item-action">4. Energy Circulation Meditation</a>
+                        <a href="{% url 'meditation:technique_detail' 8 5 %}" class="list-group-item list-group-item-action">5. Touch Meditation</a>
+                        <a href="{% url 'meditation:technique_detail' 8 6 %}" class="list-group-item list-group-item-action">6. Sacred Sexuality Meditation</a>
+                        <a href="{% url 'meditation:technique_detail' 8 7 %}" class="list-group-item list-group-item-action">7. Inner Masculine/Feminine Balance</a>
+                        <a href="{% url 'meditation:technique_detail' 8 8 %}" class="list-group-item list-group-item-action">8. Food Meditation (Mindful Eating)</a>
+                    </div>
+                    
+                    {% elif category.id == 9 %}
+                    <!-- Self-Inquiry & Awareness Meditation Techniques -->
+                    <div class="list-group">
+                        <a href="{% url 'meditation:technique_detail' 9 1 %}" class="list-group-item list-group-item-action">1. Self-Inquiry (Who Am I?)</a>
+                        <a href="{% url 'meditation:technique_detail' 9 2 %}" class="list-group-item list-group-item-action">2. Ramana Maharshi's Self-Inquiry</a>
+                        <a href="{% url 'meditation:technique_detail' 9 3 %}" class="list-group-item list-group-item-action">3. Byron Katie's The Work</a>
+                        <a href="{% url 'meditation:technique_detail' 9 4 %}" class="list-group-item list-group-item-action">4. Witnessing Meditation</a>
+                        <a href="{% url 'meditation:technique_detail' 9 5 %}" class="list-group-item list-group-item-action">5. Contemplative Inquiry</a>
+                        <a href="{% url 'meditation:technique_detail' 9 6 %}" class="list-group-item list-group-item-action">6. Awareness Watching Awareness</a>
+                        <a href="{% url 'meditation:technique_detail' 9 7 %}" class="list-group-item list-group-item-action">7. Bodhidharma's Wall-Gazing</a>
+                        <a href="{% url 'meditation:technique_detail' 9 8 %}" class="list-group-item list-group-item-action">8. Non-Dual Awareness Meditation</a>
+                        <a href="{% url 'meditation:technique_detail' 9 9 %}" class="list-group-item list-group-item-action">9. Jnana Yoga Meditation</a>
+                        <a href="{% url 'meditation:technique_detail' 9 10 %}" class="list-group-item list-group-item-action">10. Zen Koan Contemplation</a>
+                    </div>
+                    
+                    {% elif category.id == 10 %}
+                    <!-- Sleep & Relaxation-Based Meditation Techniques -->
+                    <div class="list-group">
+                        <a href="{% url 'meditation:technique_detail' 10 1 %}" class="list-group-item list-group-item-action">1. Yoga Nidra (Yogic Sleep)</a>
+                        <a href="{% url 'meditation:technique_detail' 10 2 %}" class="list-group-item list-group-item-action">2. Progressive Muscle Relaxation</a>
+                        <a href="{% url 'meditation:technique_detail' 10 3 %}" class="list-group-item list-group-item-action">3. Body Scan Relaxation</a>
+                        <a href="{% url 'meditation:technique_detail' 10 4 %}" class="list-group-item list-group-item-action">4. Hypnagogic State Meditation</a>
+                        <a href="{% url 'meditation:technique_detail' 10 5 %}" class="list-group-item list-group-item-action">5. NSDR (Non-Sleep Deep Rest)</a>
+                        <a href="{% url 'meditation:technique_detail' 10 6 %}" class="list-group-item list-group-item-action">6. Lucid Dream Meditation</a>
+                        <a href="{% url 'meditation:technique_detail' 10 7 %}" class="list-group-item list-group-item-action">7. Bedtime Meditation</a>
+                        <a href="{% url 'meditation:technique_detail' 10 8 %}" class="list-group-item list-group-item-action">8. Sleep Imagery</a>
+                    </div>
+                    
+                    {% elif category.id == 11 %}
+                    <!-- Elemental Meditation Techniques -->
+                    <div class="list-group">
+                        <a href="{% url 'meditation:technique_detail' 11 1 %}" class="list-group-item list-group-item-action">1. Earth Element Meditation</a>
+                        <a href="{% url 'meditation:technique_detail' 11 2 %}" class="list-group-item list-group-item-action">2. Water Element Meditation</a>
+                        <a href="{% url 'meditation:technique_detail' 11 3 %}" class="list-group-item list-group-item-action">3. Fire Element Meditation</a>
+                        <a href="{% url 'meditation:technique_detail' 11 4 %}" class="list-group-item list-group-item-action">4. Air Element Meditation</a>
+                        <a href="{% url 'meditation:technique_detail' 11 5 %}" class="list-group-item list-group-item-action">5. Space Element Meditation</a>
+                        <a href="{% url 'meditation:technique_detail' 11 6 %}" class="list-group-item list-group-item-action">6. Five Elements Balancing</a>
+                        <a href="{% url 'meditation:technique_detail' 11 7 %}" class="list-group-item list-group-item-action">7. Elemental Purification</a>
+                    </div>
+                    
+                    {% elif category.id == 12 %}
+                    <!-- Devotional & Bhakti Meditation Techniques -->
+                    <div class="list-group">
+                        <a href="{% url 'meditation:technique_detail' 12 1 %}" class="list-group-item list-group-item-action">1. Bhakti Yoga Meditation</a>
+                        <a href="{% url 'meditation:technique_detail' 12 2 %}" class="list-group-item list-group-item-action">2. Heart-Centered Prayer</a>
+                        <a href="{% url 'meditation:technique_detail' 12 3 %}" class="list-group-item list-group-item-action">3. Divine Love Meditation</a>
+                        <a href="{% url 'meditation:technique_detail' 12 4 %}" class="list-group-item list-group-item-action">4. Sufi Heart Meditation</a>
+                        <a href="{% url 'meditation:technique_detail' 12 5 %}" class="list-group-item list-group-item-action">5. Japa Meditation (Prayer Beads)</a>
+                        <a href="{% url 'meditation:technique_detail' 12 6 %}" class="list-group-item list-group-item-action">6. Deity Visualization</a>
+                        <a href="{% url 'meditation:technique_detail' 12 7 %}" class="list-group-item list-group-item-action">7. Surrender Meditation</a>
+                        <a href="{% url 'meditation:technique_detail' 12 8 %}" class="list-group-item list-group-item-action">8. Gratitude Meditation</a>
+                    </div>
+                    
+                    {% elif category.id == 13 %}
+                    <!-- Shadow Work & Healing Meditation Techniques -->
+                    <div class="list-group">
+                        <a href="{% url 'meditation:technique_detail' 13 1 %}" class="list-group-item list-group-item-action">1. Inner Child Meditation</a>
+                        <a href="{% url 'meditation:technique_detail' 13 2 %}" class="list-group-item list-group-item-action">2. Shadow Integration Meditation</a>
+                        <a href="{% url 'meditation:technique_detail' 13 3 %}" class="list-group-item list-group-item-action">3. Forgiveness Meditation</a>
+                        <a href="{% url 'meditation:technique_detail' 13 4 %}" class="list-group-item list-group-item-action">4. Ho'oponopono Meditation</a>
+                        <a href="{% url 'meditation:technique_detail' 13 5 %}" class="list-group-item list-group-item-action">5. Trauma Release Meditation</a>
+                        <a href="{% url 'meditation:technique_detail' 13 6 %}" class="list-group-item list-group-item-action">6. Emotional Freedom Technique</a>
+                        <a href="{% url 'meditation:technique_detail' 13 7 %}" class="list-group-item list-group-item-action">7. Self-Compassion Meditation</a>
+                        <a href="{% url 'meditation:technique_detail' 13 8 %}" class="list-group-item list-group-item-action">8. Healing Light Visualization</a>
+                    </div>
+                    
+                    {% elif category.id == 14 %}
+                    <!-- Nature & Environment-Based Meditation Techniques -->
+                    <div class="list-group">
+                        <a href="{% url 'meditation:technique_detail' 14 1 %}" class="list-group-item list-group-item-action">1. Forest Bathing (Shinrin-Yoku)</a>
+                        <a href="{% url 'meditation:technique_detail' 14 2 %}" class="list-group-item list-group-item-action">2. Mountain Meditation</a>
+                        <a href="{% url 'meditation:technique_detail' 14 3 %}" class="list-group-item list-group-item-action">3. Ocean/Water Meditation</a>
+                        <a href="{% url 'meditation:technique_detail' 14 4 %}" class="list-group-item list-group-item-action">4. Stargazing Meditation</a>
+                        <a href="{% url 'meditation:technique_detail' 14 5 %}" class="list-group-item list-group-item-action">5. Wilderness Awareness</a>
+                        <a href="{% url 'meditation:technique_detail' 14 6 %}" class="list-group-item list-group-item-action">6. Earth Connection Meditation</a>
+                        <a href="{% url 'meditation:technique_detail' 14 7 %}" class="list-group-item list-group-item-action">7. Garden Meditation</a>
+                    </div>
+                    
+                    {% elif category.id == 15 %}
+                    <!-- Trance & Altered States Meditation Techniques -->
+                    <div class="list-group">
+                        <a href="{% url 'meditation:technique_detail' 15 1 %}" class="list-group-item list-group-item-action">1. Shamanic Journey Meditation</a>
+                        <a href="{% url 'meditation:technique_detail' 15 2 %}" class="list-group-item list-group-item-action">2. Drumming Meditation</a>
+                        <a href="{% url 'meditation:technique_detail' 15 3 %}" class="list-group-item list-group-item-action">3. Holotropic Breathwork</a>
+                        <a href="{% url 'meditation:technique_detail' 15 4 %}" class="list-group-item list-group-item-action">4. Trance Dance Meditation</a>
+                        <a href="{% url 'meditation:technique_detail' 15 5 %}" class="list-group-item list-group-item-action">5. Psychedelic-Assisted Meditation</a>
+                        <a href="{% url 'meditation:technique_detail' 15 6 %}" class="list-group-item list-group-item-action">6. Hypnotic States Meditation</a>
+                        <a href="{% url 'meditation:technique_detail' 15 7 %}" class="list-group-item list-group-item-action">7. Theta Brainwave Meditation</a>
+                    </div>
+                    
+                    {% elif category.id == 16 %}
+                    <!-- Scientific & Modern Meditation Approaches -->
+                    <div class="list-group">
+                        <a href="{% url 'meditation:technique_detail' 16 1 %}" class="list-group-item list-group-item-action">1. Mindfulness-Based Stress Reduction (MBSR)</a>
+                        <a href="{% url 'meditation:technique_detail' 16 2 %}" class="list-group-item list-group-item-action">2. Binaural Beats Meditation</a>
+                        <a href="{% url 'meditation:technique_detail' 16 3 %}" class="list-group-item list-group-item-action">3. Neurofeedback Meditation</a>
+                        <a href="{% url 'meditation:technique_detail' 16 4 %}" class="list-group-item list-group-item-action">4. Virtual Reality Meditation</a>
+                        <a href="{% url 'meditation:technique_detail' 16 5 %}" class="list-group-item list-group-item-action">5. Mindfulness-Based Cognitive Therapy</a>
+                        <a href="{% url 'meditation:technique_detail' 16 6 %}" class="list-group-item list-group-item-action">6. App-Guided Meditation</a>
+                        <a href="{% url 'meditation:technique_detail' 16 7 %}" class="list-group-item list-group-item-action">7. Brain Entrainment Techniques</a>
+                        <a href="{% url 'meditation:technique_detail' 16 8 %}" class="list-group-item list-group-item-action">8. Heart Rate Variability (HRV) Meditation</a>
+                    </div>
+                    <a href="{% url 'meditation:technique_detail' 16 7 %}" class="list-group-item list-group-item-action">7. Brain Entrainment Techniques</a>
+                        <a href="{% url 'meditation:technique_detail' 16 8 %}" class="list-group-item list-group-item-action">8. EEG Meditation</a>
+                    </div>
+                    
+                    {% else %}
+                    <!-- Default case if category ID doesn't match any known category -->
+                    <div class="alert alert-info">
+                        No specific techniques are currently available for this category.
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="row mt-4">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header bg-secondary text-white">
+                    <h2 class="h4 mb-0">Benefits of {{ category.name }}</h2>
+                </div>
+                <div class="card-body">
+                    <p>{{ category.benefits|linebreaks }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="row mt-4 mb-5">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header bg-info text-white">
+                    <h2 class="h4 mb-0">Tips for Practice</h2>
+                </div>
+                <div class="card-body">
+                    <p>{{ category.tips|linebreaks }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

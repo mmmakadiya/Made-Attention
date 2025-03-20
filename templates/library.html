@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+
+{% block title %}Meditation Library{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <h1>Meditation Library</h1>
+        <p class="lead">Explore our comprehensive collection of meditation techniques.</p>
+    </div>
+</div>
+
+<div class="row mt-4">
+    <div class="col-md-3">
+        <div class="card mb-4">
+            <div class="card-header">
+                <h5 class="mb-0">Filters</h5>
+            </div>
+            <div class="card-body">
+                <form method="get">
+                    <div class="mb-3">
+                        <label for="category" class="form-label">Category</label>
+                        <select class="form-select" id="category" name="category">
+                            <option value="">All Categories</option>
+                            {% for category in categories %}
+                            <option value="{{ category.id }}" {% if request.GET.category == category.id|stringformat:"i" %}selected{% endif %}>
+                                {{ category.name }}
+                            </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="difficulty" class="form-label">Difficulty Level</label>
+                        <select class="form-select" id="difficulty" name="difficulty">
+                            <option value="">All Levels</option>
+                            <option value="beginner" {% if request.GET.difficulty == "beginner" %}selected{% endif %}>Beginner</option>
+                            <option value="intermediate" {% if request.GET.difficulty == "intermediate" %}selected{% endif %}>Intermediate</option>
+                            <option value="advanced" {% if request.GET.difficulty == "advanced" %}selected{% endif %}>Advanced</option>
+                        </select>
+                    </div>
+                    
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-primary">Apply Filters</button>
+                        <a href="{% url 'meditation:library' %}" class="btn btn-outline-secondary mt-2">Clear Filters</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-9">
+        <div class="row">
+            {% for technique in techniques %}
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <span class="badge {% if technique.difficulty_level == 'beginner' %}bg-success{% elif technique.difficulty_level == 'intermediate' %}bg-warning{% else %}bg-danger{% endif %}">
+                            {{ technique.difficulty_level|capfirst }}
+                        </span>
+                        <small class="text-muted">{{ technique.duration }}</small>
+                    </div>
+                    {% if technique.image %}
+                    <img src="{{ technique.image.url }}" class="card-img-top" alt="{{ technique.name }}">
+                    {% endif %}
+                    <div class="card-body">
+                        <h5 class="card-title">{{ technique.name }}</h5>
+                        <p class="card-text">{{ technique.short_description|truncatewords:15 }}</p>
+                    </div>
+                    <div class="card-footer bg-transparent">
+                        <a href="{% url 'meditation:technique_detail' technique.id %}" class="btn btn-outline-primary btn-sm">View Details</a>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-12">
+                <div class="alert alert-info">
+                    No techniques found matching your filters. Try adjusting your search criteria.
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

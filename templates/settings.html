@@ -1,0 +1,160 @@
+{% extends 'base.html' %}
+
+{% block title %}Account Settings{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <h1>Account Settings</h1>
+        <p class="lead">Manage your profile and preferences.</p>
+    </div>
+</div>
+
+<div class="row mt-4">
+    <div class="col-md-3">
+        <div class="list-group mb-4">
+            <a href="#profile" class="list-group-item list-group-item-action active" data-bs-toggle="list">Profile</a>
+            <a href="#preferences" class="list-group-item list-group-item-action" data-bs-toggle="list">Preferences</a>
+            <a href="#notifications" class="list-group-item list-group-item-action" data-bs-toggle="list">Notifications</a>
+            <a href="#security" class="list-group-item list-group-item-action" data-bs-toggle="list">Security</a>
+        </div>
+    </div>
+    
+    <div class="col-md-9">
+        <div class="tab-content">
+            <div class="tab-pane fade show active" id="profile">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="mb-0">Profile Information</h5>
+                    </div>
+                    <div class="card-body">
+                        <form>
+                            <div class="alert alert-info">
+                                Please login to manage your profile settings.
+                            </div>
+                            <div class="mb-3">
+                                <label for="username" class="form-label">Username</label>
+                                <input type="text" class="form-control" id="username" value="DemoUser" disabled>
+                            </div>
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Email</label>
+                                <input type="email" class="form-control" id="email" value="user@example.com" disabled>
+                            </div>
+                            <div class="mb-3">
+                                <label for="bio" class="form-label">Bio</label>
+                                <textarea class="form-control" id="bio" rows="3" disabled>This is a demo bio for the user.</textarea>
+                            </div>
+                            <div class="mb-3">
+                                <label for="profilePic" class="form-label">Profile Picture</label>
+                                <input class="form-control" type="file" id="profilePic" disabled>
+                            </div>
+                            <button type="submit" class="btn btn-primary" disabled>Save Changes</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="tab-pane fade" id="preferences">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="mb-0">User Preferences</h5>
+                    </div>
+                    <div class="card-body">
+                        <form>
+                            <div class="alert alert-info">
+                                Please login to manage your preferences.
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Theme</label>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="theme" id="themeLight" checked disabled>
+                                    <label class="form-check-label" for="themeLight">
+                                        Light
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="theme" id="themeDark" disabled>
+                                    <label class="form-check-label" for="themeDark">
+                                        Dark
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Language</label>
+                                <select class="form-select" disabled>
+                                    <option selected>English</option>
+                                    <option>Hindi</option>
+                                    <option>Spanish</option>
+                                </select>
+                            </div>
+                            <button type="submit" class="btn btn-primary" disabled>Save Preferences</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="tab-pane fade" id="notifications">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="mb-0">Notification Settings</h5>
+                    </div>
+                    <div class="card-body">
+                        <form>
+                            <div class="alert alert-info">
+                                Please login to manage your notification settings.
+                            </div>
+                            <div class="mb-3">
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" id="emailNotifications" checked disabled>
+                                    <label class="form-check-label" for="emailNotifications">Email Notifications</label>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" id="commentNotifications" checked disabled>
+                                    <label class="form-check-label" for="commentNotifications">Comment Replies</label>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" id="newsletterNotifications" checked disabled>
+                                    <label class="form-check-label" for="newsletterNotifications">Newsletter</label>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary" disabled>Save Notification Settings</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="tab-pane fade" id="security">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="mb-0">Security Settings</h5>
+                    </div>
+                    <div class="card-body">
+                        <form>
+                            <div class="alert alert-info">
+                                Please login to manage your security settings.
+                            </div>
+                            <div class="mb-3">
+                                <label for="currentPassword" class="form-label">Current Password</label>
+                                <input type="password" class="form-control" id="currentPassword" disabled>
+                            </div>
+                            <div class="mb-3">
+                                <label for="newPassword" class="form-label">New Password</label>
+                                <input type="password" class="form-control" id="newPassword" disabled>
+                            </div>
+                            <div class="mb-3">
+                                <label for="confirmPassword" class="form-label">Confirm New Password</label>
+                                <input type="password" class="form-control" id="confirmPassword" disabled>
+                            </div>
+                            <button type="submit" class="btn btn-primary" disabled>Change Password</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

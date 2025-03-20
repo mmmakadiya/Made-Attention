@@ -1,0 +1,130 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ technique.name }} - Meditation Technique{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{% url 'meditation:home' %}">Home</a></li>
+                <li class="breadcrumb-item"><a href="{% url 'meditation:category_list' %}">Categories</a></li>
+                <li class="breadcrumb-item"><a href="{% url 'meditation:category_detail' technique.subcategory.category.id %}">{{ technique.subcategory.category.name }}</a></li>
+                <li class="breadcrumb-item"><a href="{% url 'meditation:subcategory_detail' technique.subcategory.id %}">{{ technique.subcategory.name }}</a></li>
+                <li class="breadcrumb-item active" aria-current="page">{{ technique.name }}</li>
+            </ol>
+        </nav>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-8">
+        <h1>{{ technique.name }}</h1>
+        
+        <div class="mb-3">
+            <span class="badge {% if technique.difficulty_level == 'beginner' %}bg-success{% elif technique.difficulty_level == 'intermediate' %}bg-warning{% else %}bg-danger{% endif %} p-2">
+                {{ technique.difficulty_level|capfirst }}
+            </span>
+            <span class="badge bg-info p-2 ms-2">{{ technique.duration }}</span>
+        </div>
+        
+        <h3 class="mt-4">Description</h3>
+        <p>{{ technique.short_description }}</p>
+        
+        <h3 class="mt-4">Benefits</h3>
+        <div class="card mb-4">
+            <div class="card-body">
+                {{ technique.benefits|linebreaks }}
+            </div>
+        </div>
+        
+        <h3 class="mt-4">Instructions</h3>
+        <div class="card mb-4">
+            <div class="card-body">
+                {{ technique.instructions|linebreaks }}
+            </div>
+        </div>
+        
+        {% if technique.video_url %}
+        <h3 class="mt-4">Guided Meditation Video</h3>
+        <div class="ratio ratio-16x9 mb-4">
+            <iframe src="{{ technique.video_url }}" title="{{ technique.name }}" allowfullscreen></iframe>
+        </div>
+        {% endif %}
+        
+        <h3 class="mt-4">Community Comments</h3>
+        <div class="card">
+            <div class="card-body">
+                {% for comment in comments %}
+                <div class="d-flex mb-3">
+                    <div class="flex-shrink-0">
+                        {% if comment.user.profile_pic %}
+                        <img src="{{ comment.user.profile_pic.url }}" class="rounded-circle" width="50" height="50" alt="{{ comment.user.username }}">
+                        {% else %}
+                        <div class="rounded-circle bg-secondary text-white d-flex justify-content-center align-items-center" style="width: 50px; height: 50px;">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        {% endif %}
+                    </div>
+                    <div class="flex-grow-1 ms-3">
+                        <h6 class="mb-0">{{ comment.user.username }}</h6>
+                        <small class="text-muted">{{ comment.created_at|date:"F j, Y" }}</small>
+                        <p class="mt-1">{{ comment.content }}</p>
+                    </div>
+                </div>
+                {% empty %}
+                <p>No comments yet. Be the first to share your experience!</p>
+                {% endfor %}
+                
+                <div class="mt-4">
+                    <h5>Add a Comment</h5>
+                    <div class="alert alert-info">
+                        Please <a href="#">login</a> to add a comment.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-4">
+        <div class="position-sticky" style="top: 2rem;">
+            {% if technique.image %}
+            <img src="{{ technique.image.url }}" class="img-fluid rounded mb-4" alt="{{ technique.name }}">
+            {% else %}
+            <div class="bg-light d-flex justify-content-center align-items-center rounded mb-4" style="height: 200px;">
+                <i class="fas fa-spa fa-4x text-secondary"></i>
+            </div>
+            {% endif %}
+            
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h5 class="mb-0">Quick Info</h5>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                        <strong>Category:</strong> {{ technique.subcategory.category.name }}
+                    </li>
+                    <li class="list-group-item">
+                        <strong>Subcategory:</strong> {{ technique.subcategory.name }}
+                    </li>
+                    <li class="list-group-item">
+                        <strong>Difficulty:</strong> {{ technique.difficulty_level|capfirst }}
+                    </li>
+                    <li class="list-group-item">
+                        <strong>Duration:</strong> {{ technique.duration }}
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="d-grid gap-2">
+                <button class="btn btn-outline-primary" type="button">
+                    <i class="far fa-heart"></i> Add to Favorites
+                </button>
+                <button class="btn btn-outline-secondary" type="button">
+                    <i class="fas fa-share-alt"></i> Share
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+
+{% block title %}Meditation App - Home{% endblock %}
+
+{% block content %}
+<div class="jumbotron bg-light p-5 rounded">
+    <h1 class="display-4">Welcome to Meditation App</h1>
+    <p class="lead">Discover over 112+ meditation techniques including Vipassana, Tratak, Reiki, Hypnotism and more.</p>
+    <hr class="my-4">
+    <p>Start your meditation journey today with our comprehensive collection of techniques.</p>
+    <a class="btn btn-primary btn-lg" href="{% url 'meditation:category_list' %}" role="button">Explore Techniques</a>
+</div>
+
+<div class="row mt-5">
+    <div class="col-12">
+        <h2>Featured Categories</h2>
+    </div>
+</div>
+
+<div class="row mt-3">
+    {% for category in categories %}
+    <div class="col-md-4 mb-4">
+        <div class="card h-100">
+            {% if category.image %}
+            <img src="{{ category.image.url }}" class="card-img-top" alt="{{ category.name }}">
+            {% else %}
+            <div class="bg-secondary text-white d-flex justify-content-center align-items-center" style="height: 140px;">
+                <i class="fas fa-om fa-3x"></i>
+            </div>
+            {% endif %}
+            <div class="card-body">
+                <h5 class="card-title">{{ category.name }}</h5>
+                <p class="card-text">{{ category.description|truncatewords:20 }}</p>
+                <a href="{% url 'meditation:category_detail' category.id %}" class="btn btn-outline-primary">Explore</a>
+            </div>
+        </div>
+    </div>
+    {% empty %}
+    <div class="col-12">
+        <p>No categories found. Please check back later.</p>
+    </div>
+    {% endfor %}
+</div>
+
+<div class="row mt-5">
+    <div class="col-12">
+        <h2>Recent Techniques</h2>
+    </div>
+</div>
+
+<div class="row mt-3">
+    {% for technique in techniques %}
+    <div class="col-md-4 mb-4">
+        <div class="card h-100">
+            <div class="card-header">
+                <span class="badge {% if technique.difficulty_level == 'beginner' %}bg-success{% elif technique.difficulty_level == 'intermediate' %}bg-warning{% else %}bg-danger{% endif %}">
+                    {{ technique.difficulty_level|capfirst }}
+                </span>
+            </div>
+            {% if technique.image %}
+            <img src="{{ technique.image.url }}" class="card-img-top" alt="{{ technique.name }}">
+            {% endif %}
+            <div class="card-body">
+                <h5 class="card-title">{{ technique.name }}</h5>
+                <p class="card-text">{{ technique.short_description|truncatewords:15 }}</p>
+                <a href="{% url 'meditation:technique_detail' technique.id %}" class="btn btn-outline-primary">Learn More</a>
+            </div>
+        </div>
+    </div>
+    {% empty %}
+    <div class="col-12">
+        <p>No techniques found. Please check back later.</p>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

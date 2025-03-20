@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+
+{% block title %}Meditation Community{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <h1>Meditation Community</h1>
+        <p class="lead">Connect with fellow meditators and share your experiences.</p>
+    </div>
+</div>
+
+<div class="row mt-4">
+    <div class="col-md-8">
+        <div class="card mb-4">
+            <div class="card-header">
+                <h5 class="mb-0">Recent Comments</h5>
+            </div>
+            <div class="card-body">
+                {% for comment in comments %}
+                <div class="d-flex mb-4">
+                    <div class="flex-shrink-0">
+                        {% if comment.user.profile_pic %}
+                        <img src="{{ comment.user.profile_pic.url }}" class="rounded-circle" width="50" height="50" alt="{{ comment.user.username }}">
+                        {% else %}
+                        <div class="rounded-circle bg-secondary text-white d-flex justify-content-center align-items-center" style="width: 50px; height: 50px;">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        {% endif %}
+                    </div>
+                    <div class="flex-grow-1 ms-3">
+                        <div class="d-flex justify-content-between">
+                            <h6 class="mb-0">{{ comment.user.username }}</h6>
+                            <small class="text-muted">{{ comment.created_at|date:"F j, Y" }}</small>
+                        </div>
+                        <small class="text-muted">On <a href="{% url 'meditation:technique_detail' comment.technique.id %}">{{ comment.technique.name }}</a></small>
+                        <p class="mt-1">{{ comment.content }}</p>
+                    </div>
+                </div>
+                {% empty %}
+                <p>No comments found. Be the first to share your experience!</p>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-4">
+        <div class="card mb-4">
+            <div class="card-header">
+                <h5 class="mb-0">Active Users</h5>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    {% for user in users %}
+                    <div class="col-6 mb-3">
+                        <div class="d-flex align-items-center">
+                            {% if user.profile_pic %}
+                            <img src="{{ user.profile_pic.url }}" class="rounded-circle me-2" width="40" height="40" alt="{{ user.username }}">
+                            {% else %}
+                            <div class="rounded-circle bg-secondary text-white d-flex justify-content-center align-items-center me-2" style="width: 40px; height: 40px;">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            {% endif %}
+                            <div>
+                                <h6 class="mb-0">{{ user.username }}</h6>
+                            </div>
+                        </div>
+                    </div>
+                    {% empty %}
+                    <div class="col-12">
+                        <p>No users found.</p>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0">Join the Community</h5>
+            </div>
+            <div class="card-body">
+                <p>Share your meditation experiences, ask questions, and connect with other practitioners.</p>
+                <div class="d-grid gap-2">
+                    <a href="#" class="btn btn-primary">Login</a>
+                    <a href="#" class="btn btn-outline-primary">Register</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
