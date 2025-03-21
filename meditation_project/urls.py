@@ -6,6 +6,7 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('meditation.urls')),
+    path('users/', include('users.urls', namespace='users')),
 ]
 
 # Add these patterns to serve media files in development

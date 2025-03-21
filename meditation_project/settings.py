@@ -28,6 +28,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'meditation',  # Add our app
+    'users',
+
 ]
 
 MIDDLEWARE = [
@@ -83,6 +85,20 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'  # Or your preferred email provider
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'rohanrajparmar@gmail.com'  # Replace with your email
+EMAIL_HOST_PASSWORD = 'Neha@0810'  # Use an app password for Gmail
+
+# Set the custom user model
+AUTH_USER_MODEL = 'users.CustomUser'
+
+# Add login/logout redirect URLs
+LOGIN_REDIRECT_URL = 'home'
+LOGOUT_REDIRECT_URL = 'login'
 
 # Internationalization
 LANGUAGE_CODE = 'en-us'

@@ -4,7 +4,8 @@ from . import views
 app_name = 'meditation'
 
 urlpatterns = [
-    path('', views.home, name='home'),
+    path('', views.front, name='front'),
+    path('home/', views.home, name='home'),
     path('categories/', views.category_list, name='category_list'),
     path('categories/<int:category_id>/', views.category_detail, name='category_detail'),
     path('subcategories/<int:subcategory_id>/', views.subcategory_detail, name='subcategory_detail'),

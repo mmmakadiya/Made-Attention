@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% block title %}Verify OTP - Meditation App{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow">
+                <div class="card-header text-center bg-primary text-white">
+                    <h3>Verify OTP{% if purpose %} for {{ purpose }}{% endif %}</h3>
+                </div>
+                <div class="card-body">
+                    {% if messages %}
+                        {% for message in messages %}
+                            <div class="alert {% if message.tags %}alert-{{ message.tags }}{% else %}alert-info{% endif %}" role="alert">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                    
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="form-group mb-3">
+                            <label for="otp">Enter OTP sent to your email</label>
+                            <input type="text" class="form-control" id="otp" name="otp" required>
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary btn-block">Verify OTP</button>
+                        </div>
+                    </form>
+                    
+                    <div class="mt-3 text-center">
+                        <a href="#" id="resend-otp">Didn't receive OTP? Resend</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.getElementById('resend-otp').addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        fetch('{% url "resend_otp" %}', {
+            method: 'POST',
+            headers: {
+                'X-CSRFToken': '{{ csrf_token }}',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                email: '{{ email }}',
+                purpose: '{{ purpose }}'
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if(data.success) {
+                alert('OTP has been resent to your email');
+            } else {
+                alert('Failed to resend OTP: ' + data.message);
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('An error occurred while resending OTP');
+        });
+    });
+</script>
+{% endblock %}

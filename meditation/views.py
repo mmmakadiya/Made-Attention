@@ -2,6 +2,9 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.views import generic
 from .models import Category, Subcategory, MeditationTechnique, User, Comment
 
+def front(request):
+    return render(request, 'front.html')
+
 def home(request):
     
     """Homepage view"""
