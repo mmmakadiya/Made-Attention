@@ -3,6 +3,8 @@
 {% block title %}Meditation Community{% endblock %}
 
 {% block content %}
+{% include 'sidebar.html' %}
+
 <div class="row">
     <div class="col-12">
         <h1>Meditation Community</h1>
@@ -82,8 +84,8 @@
             <div class="card-body">
                 <p>Share your meditation experiences, ask questions, and connect with other practitioners.</p>
                 <div class="d-grid gap-2">
-                    <a href="#" class="btn btn-primary">Login</a>
-                    <a href="#" class="btn btn-outline-primary">Register</a>
+                    <a href="{% url 'users:login' %}" class="btn btn-primary">Login</a>
+                    <a href="{% url 'users:register' %}" class="btn btn-outline-primary">Register</a>
                 </div>
             </div>
         </div>

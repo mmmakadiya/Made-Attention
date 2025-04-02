@@ -86,12 +86,18 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'  # Or your preferred email provider
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'rohanrajparmar@gmail.com'  # Replace with your email
-EMAIL_HOST_PASSWORD = 'Neha@0810'  # Use an app password for Gmail
+
+# # Email settings for SendGrid
+# SENDGRID_API_KEY = os.getenv('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')
+# DEFAULT_FROM_EMAIL = 'madeattention@gmail.com'
+
+# # Standard Django email settings (fallback)
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_HOST = 'smtp.gmail.com'  # Or your email provider's SMTP server
+# EMAIL_PORT = 587
+# EMAIL_USE_TLS = True
+# EMAIL_HOST_USER = 'madeattention@gmail.com'
+# EMAIL_HOST_PASSWORD = 'Neha@0810'  # Use app password for Gmail
 
 # Set the custom user model
 AUTH_USER_MODEL = 'users.CustomUser'

@@ -3,6 +3,7 @@
 {% block title %}Meditation App - Home{% endblock %}
 
 {% block content %}
+
 <div class="jumbotron bg-light p-5 rounded">
     <h1 class="display-4">Welcome to Meditation App</h1>
     <p class="lead">Discover over 112+ meditation techniques including Vipassana, Tratak, Reiki, Hypnotism and more.</p>
@@ -11,7 +12,44 @@
     <a class="btn btn-primary btn-lg" href="{% url 'meditation:category_list' %}" role="button">Explore Techniques</a>
 </div>
 
+<!-- Time-based Meditation Recommendations -->
 <div class="row mt-5">
+    <div class="col-12">
+        <h2>Recommended for {{ time_of_day }} <small class="text-muted">{{ current_time|time:"g:i A" }}</small></h2>
+        <p>Techniques best suited for your current time of day</p>
+    </div>
+</div>
+
+<div class="row mt-3">
+    {% for technique in all_techniques %}
+    <div class="col-md-4 mb-4">
+        <div class="card h-100 border-primary">
+            <div class="card-header bg-primary text-white">
+                <i class="fas fa-clock me-2"></i> {{ time_of_day }} Recommendation
+                <span class="float-end badge {% if technique.difficulty_level == 'beginner' %}bg-success{% elif technique.difficulty_level == 'intermediate' %}bg-warning{% else %}bg-danger{% endif %}">
+                    {{ technique.difficulty_level|capfirst }}
+                </span>
+            </div>
+            {% if technique.image %}
+            <img src="{{ technique.image.url }}" class="card-img-top" alt="{{ technique.name }}">
+            {% endif %}
+            <div class="card-body">
+                <h5 class="card-title">{{ technique.name }}</h5>
+                <p class="card-text">{{ technique.short_description|truncatewords:15 }}</p>
+                <a href="{% url 'meditation:technique_detail' technique.id %}" class="btn btn-primary">Start Now</a>
+            </div>
+        </div>
+    </div>
+    {% empty %}
+    <div class="col-12">
+        <div class="alert alert-info">
+            No specific {{ time_of_day }} techniques found. Please check back later.
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+<!-- <div class="row mt-5">
     <div class="col-12">
         <h2>Featured Categories</h2>
     </div>
@@ -40,9 +78,9 @@
         <p>No categories found. Please check back later.</p>
     </div>
     {% endfor %}
-</div>
+</div> -->
 
-<div class="row mt-5">
+<!-- <div class="row mt-5">
     <div class="col-12">
         <h2>Recent Techniques</h2>
     </div>
@@ -72,5 +110,5 @@
         <p>No techniques found. Please check back later.</p>
     </div>
     {% endfor %}
-</div>
+</div> -->
 {% endblock %}

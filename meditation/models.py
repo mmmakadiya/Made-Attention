@@ -1,18 +1,70 @@
 from django.db import models
 
+
 class Category(models.Model):
-    """Main category model (e.g., Breathing-based meditation, Silent meditation)"""
     name = models.CharField(max_length=100)
     description = models.TextField()
     image = models.ImageField(upload_to='categories/', blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    
-    class Meta:
-        verbose_name_plural = "Categories"
+    time_tags = models.JSONField(default=list)  # ✅ Ensure this exists
+
     
     def __str__(self):
         return self.name
+    
+    class Meta:
+        verbose_name_plural = "Categories"
+
+class Technique(models.Model):
+    DIFFICULTY_CHOICES = (
+        ('beginner', 'Beginner'),
+        ('intermediate', 'Intermediate'),
+        ('advanced', 'Advanced'),
+    )
+    
+    TIME_TAG_CHOICES = (
+        ('morning', 'Morning'),
+        ('noon', 'Noon'),
+        ('evening', 'Evening'),
+        ('night', 'Night'),
+    )
+    
+    name = models.CharField(max_length=100)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='techniques')
+    short_description = models.TextField()
+    detailed_description = models.TextField()
+    duration_minutes = models.PositiveIntegerField(default=10)
+    difficulty_level = models.CharField(max_length=20, choices=DIFFICULTY_CHOICES, default='beginner')
+    image = models.ImageField(upload_to='techniques/', blank=True, null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    time_tags = models.JSONField(default=list)  # ✅ Ensure this exists
+
+    
+    # Add this field for time-based recommendations
+    # You can use a ManyToManyField if you want to allow multiple time tags
+    time_tags = models.CharField(max_length=50, choices=TIME_TAG_CHOICES, blank=True)
+    
+    # Alternative: Use a ManyToManyField if techniques can belong to multiple times of day
+    # time_tags = models.ManyToManyField('TimeTag', blank=True, related_name='techniques')
+    
+    def __str__(self):
+        return self.name
+
+# class Category(models.Model):
+#     """Main category model (e.g., Breathing-based meditation, Silent meditation)"""
+#     name = models.CharField(max_length=100)
+#     description = models.TextField()
+#     image = models.ImageField(upload_to='categories/', blank=True, null=True)
+#     created_at = models.DateTimeField(auto_now_add=True)
+#     updated_at = models.DateTimeField(auto_now=True)
+    
+#     class Meta:
+#         verbose_name_plural = "Categories"
+    
+#     def __str__(self):
+#         return self.name
 
 class Subcategory(models.Model):
     """Subcategory model (e.g., Vipassana, Nadbrahma under Breathing-based)"""
